@@ -54,9 +54,9 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Create the name of the service account to use
 */}}
 {{- define "kubevis.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "kubevis.fullname" .) .Values.serviceAccount.name }}
+{{- if .Values.clusterAdmin.enabled }}
+{{- include "kubevis.fullname" . }}
 {{- else }}
-{{- default "default" .Values.serviceAccount.name }}
+"default"
 {{- end }}
 {{- end }}

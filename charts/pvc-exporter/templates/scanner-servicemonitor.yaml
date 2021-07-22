@@ -10,6 +10,7 @@ metadata:
     {{- .Values.serviceMonitor.additionalLabels | nindent 4 }}
     {{- end }}
 spec:
+  jobLabel: app
   selector:
     matchLabels:
       app: {{ $fullName }}
@@ -18,5 +19,4 @@ spec:
       targetPort: http-metrics
       scheme: http
       path: /
-    jobLabel: app
 {{- end}}

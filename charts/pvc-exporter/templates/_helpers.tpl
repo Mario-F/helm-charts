@@ -40,6 +40,7 @@ helm.sh/chart: {{ include "pvc-exporter.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/app: pvc-exporter
 {{- end }}
 
 {{/*
@@ -48,6 +49,7 @@ Selector labels
 {{- define "pvc-exporter.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "pvc-exporter.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/app: pvc-exporter
 {{- end }}
 
 {{/*

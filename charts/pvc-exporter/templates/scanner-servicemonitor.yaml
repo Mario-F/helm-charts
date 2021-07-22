@@ -6,8 +6,8 @@ metadata:
   name: {{ $fullName }}
   labels:
     app: {{ $fullName }}
-    {{- if .Values.metrics.serviceMonitor.additionalLabels }}
-    {{- .Values.metrics.serviceMonitor.additionalLabels | nindent 4 }}
+    {{- if .Values.serviceMonitor.additionalLabels }}
+    {{- .Values.serviceMonitor.additionalLabels | nindent 4 }}
     {{- end }}
 spec:
   selector:

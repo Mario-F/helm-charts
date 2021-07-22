@@ -33,6 +33,7 @@ spec:
           {{- end }}
           args:
             - "--mapper"
+            - "--port {{ .Values.pvcMapper.metricsPort }}"
             {{- range .Values.pvcMapper.extraArgs }}
             {{ . }}
             {{- end }}

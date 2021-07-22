@@ -43,6 +43,16 @@ entries:
   pvc-exporter:
   - apiVersion: v2
     appVersion: v1.1.0
+    created: "2021-07-22T22:16:08.99490492Z"
+    description: Helm chart to kubevis https://github.com/Mario-F/pvc-exporter
+    digest: 12750371d603aee85bcb0a1334cd1c1b6f8effed37f46ffe0f0c6e6db6d653ce
+    name: pvc-exporter
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/pvc-exporter-1.1.2/pvc-exporter-1.1.2.tgz
+    version: 1.1.2
+  - apiVersion: v2
+    appVersion: v1.1.0
     created: "2021-07-22T22:14:35.816344985Z"
     description: Helm chart to kubevis https://github.com/Mario-F/pvc-exporter
     digest: 88cd9d5dc21bfc3caa781b8f19e8d772479eae03366074fd2b135c32518adb82
@@ -121,4 +131,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/pvc-exporter-1.0.0/pvc-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-22T22:14:35.816442085Z"
+generated: "2021-07-22T22:16:08.99495382Z"

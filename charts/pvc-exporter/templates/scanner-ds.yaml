@@ -29,8 +29,8 @@ spec:
         {{- end }}
           args:
             - "--scanner"
-            - "--port {{ .Values.pvcMapper.metricsPort }}"
-            {{- range .Values.pvcMapper.extraArgs }}
+            - "--port {{ .Values.pvcScanner.metricsPort }}"
+            {{- range .Values.pvcScanner.extraArgs }}
             {{ . }}
             {{- end }}
           ports:

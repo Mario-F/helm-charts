@@ -1,0 +1,39 @@
+{{- $fullName := include "pvc-exporter.fullname" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullName }}-mapping
+  labels:
+    {{- include "pvc-exporter.labels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ $fullName }}-mapping
+spec:
+  replicas: {{ .Values.pvcMapper.replicaCount }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "pvc-exporter.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ $fullName }}-mapping
+  template:
+    metadata:
+      labels:
+        {{- include "pvc-exporter.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ $fullName }}-mapping
+    spec:
+      serviceAccountName: {{ include "pvc-exporter.serviceAccountName" . }}
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: mapping
+          {{- with .Values.image }}
+          image: "{{ .repository }}:{{ .tag | default $.Chart.AppVersion }}"
+          imagePullPolicy: {{ .pullPolicy }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.pvcMapper.resources | nindent 12 }}
+          ports:
+            - containerPort: {{ .Values.pvcMapper.metricsPort }}
+              name: http-metrics
+              protocol: TCP

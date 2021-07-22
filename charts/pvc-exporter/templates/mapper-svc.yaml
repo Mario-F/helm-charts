@@ -1,0 +1,17 @@
+{{- $fullName := include "pvc-exporter.fullname" . -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $fullName }}-mapping
+  labels:
+    {{- include "pvc-exporter.labels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ $fullName }}-mapping
+spec:
+  selector:
+    {{- include "pvc-exporter.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ $fullName }}-mapping
+  ports:
+    - port: {{ .Values.pvcMapper.metricsPort }}
+      name: http-metrics
+      protocol: TCP
+      targetPort: {{ .Values.pvcMapper.metricsPort }}

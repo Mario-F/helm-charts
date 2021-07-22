@@ -1,0 +1,43 @@
+{{- $fullName := include "pvc-exporter.fullname" . -}}
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ $fullName }}-scanner
+  labels:
+    {{- include "pvc-exporter.labels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ $fullName }}-scanner
+spec:
+  selector:
+    matchLabels:
+      {{- include "pvc-exporter.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ $fullName }}-scanner
+  template:
+    metadata:
+      labels:
+        {{- include "pvc-exporter.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ $fullName }}-scanner
+    spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: scanner
+        {{- with .Values.image }}
+          image: "{{ .repository }}:{{ .tag | default $.Chart.AppVersion }}"
+          imagePullPolicy: {{ .pullPolicy }}
+        {{- end }}
+          ports:
+            - containerPort: {{ .Values.pvcScanner.metricsPort }}
+              name: http-metrics
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.pvcScanner.resources | nindent 12 }}
+          volumeMounts:
+            - name: root-path
+              mountPath: /host
+              readOnly: true
+      volumes:
+      - name: root-path
+        hostPath:
+          path: /

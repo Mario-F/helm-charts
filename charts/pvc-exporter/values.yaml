@@ -1,0 +1,33 @@
+image:
+  repository: ghcr.io/mario-f/pvc-exporter
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+serviceAccount:
+  create: false
+
+scrapeInterval: 15
+
+pvcMapper:
+  replicaCount: 1
+  metricsPort: 8849
+  resources:
+    requests:
+      cpu: 25m
+      memory: 50Mi
+    limits:
+      cpu: 100m
+      memory: 200Mi
+
+pvcScanner:
+  metricsPort: 8848
+  resources:
+    requests:
+      cpu: 25m
+      memory: 50Mi
+    limits:
+      cpu: 100m
+      memory: 200Mi
+
+serviceMonitor:
+  enabled: false

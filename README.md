@@ -18,3 +18,4 @@ You can then run `helm search repo mariof-charts` to see the charts.
 ## Charts
 
 * [KubeVis](charts/kubevis/README.md)
+* [PVC Exporter](charts/pvc-exporter/README.md)

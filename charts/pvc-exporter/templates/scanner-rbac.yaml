@@ -31,8 +31,10 @@ subjects:
 - kind: ServiceAccount
   name: {{ include "pvc-exporter.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
+{{- if .Values.serviceAccount.create }}
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: {{ include "pvc-exporter.serviceAccountName" . }}
+{{- end }}

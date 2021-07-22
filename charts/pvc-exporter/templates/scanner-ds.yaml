@@ -27,6 +27,11 @@ spec:
           image: "{{ .repository }}:{{ .tag | default $.Chart.AppVersion }}"
           imagePullPolicy: {{ .pullPolicy }}
         {{- end }}
+          args:
+            - "--scanner"
+            {{- range .Values.pvcMapper.extraArgs }}
+            {{ . }}
+            {{- end }}
           ports:
             - containerPort: {{ .Values.pvcScanner.metricsPort }}
               name: http-metrics

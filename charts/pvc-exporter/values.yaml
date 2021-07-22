@@ -11,6 +11,7 @@ scrapeInterval: 15
 pvcMapper:
   replicaCount: 1
   metricsPort: 8849
+  extraArgs: []
   resources:
     requests:
       cpu: 25m
@@ -21,6 +22,7 @@ pvcMapper:
 
 pvcScanner:
   metricsPort: 8848
+  extraArgs: []
   resources:
     requests:
       cpu: 25m

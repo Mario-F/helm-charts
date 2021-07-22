@@ -14,10 +14,10 @@ pvcMapper:
   extraArgs: []
   resources:
     requests:
-      cpu: 50m
+      cpu: 100m
       memory: 50Mi
     limits:
-      cpu: 500m
+      cpu: 1000m
       memory: 200Mi
 
 pvcScanner:

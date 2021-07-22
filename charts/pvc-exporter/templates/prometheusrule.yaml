@@ -1,0 +1,41 @@
+{{- $fullName := include "pvc-exporter.fullname" . -}}
+{{- if .Values.prometheusRule.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app: {{ $fullName }}
+    {{- if .Values.serviceMonitor.additionalLabels }}
+    {{ toYaml .Values.serviceMonitor.additionalLabels | nindent 4 }}
+    {{- end }}
+spec:
+  groups:
+    - name: pvc-usage
+      rules:
+        - alert: PvcLowOnSpace
+          annotations:
+            message: PVC has low disk space available
+          expr: |-
+            (sum without (pod,service,namespace,job,instance,endpoint) (pvc_usage)) 
+              +
+            on(volumename) group_left(storageclass,namespace,node,persistentvolumeclaim) kube_persistentvolumeclaim_info*0 
+              >
+            {{ .Values.prometheusRule.percent.warning }}
+          for: 10m
+          labels:
+            severity: warning
+        - alert: PvcOutOffSpace
+        annotations:
+          message: PVC has low disk space available
+        expr: |-
+          (sum without (pod,service,namespace,job,instance,endpoint) (pvc_usage)) 
+            +
+          on(volumename) group_left(storageclass,namespace,node,persistentvolumeclaim) kube_persistentvolumeclaim_info*0 
+            >
+          {{ .Values.prometheusRule.percent.critical }}
+        for: 10m
+        labels:
+          severity: critical
+{{- end }}

@@ -34,3 +34,10 @@ pvcScanner:
 serviceMonitor:
   enabled: false
   additionalLabels: {}
+
+prometheusRule:
+  enabled: false
+  additionalLabels: {}
+  percent:
+    warning: 0.7
+    critical: 0.9

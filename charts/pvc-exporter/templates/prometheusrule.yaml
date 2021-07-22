@@ -27,15 +27,15 @@ spec:
           labels:
             severity: warning
         - alert: PvcOutOffSpace
-        annotations:
-          message: PVC has low disk space available
-        expr: |-
-          (sum without (pod,service,namespace,job,instance,endpoint) (pvc_usage)) 
-            +
-          on(volumename) group_left(storageclass,namespace,node,persistentvolumeclaim) kube_persistentvolumeclaim_info*0 
-            >
-          {{ .Values.prometheusRule.percent.critical }}
-        for: 10m
-        labels:
-          severity: critical
+          annotations:
+            message: PVC has low disk space available
+          expr: |-
+            (sum without (pod,service,namespace,job,instance,endpoint) (pvc_usage)) 
+              +
+            on(volumename) group_left(storageclass,namespace,node,persistentvolumeclaim) kube_persistentvolumeclaim_info*0 
+              >
+            {{ .Values.prometheusRule.percent.critical }}
+          for: 10m
+          labels:
+            severity: critical
 {{- end }}

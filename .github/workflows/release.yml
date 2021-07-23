@@ -23,6 +23,8 @@ jobs:
         uses: azure/setup-helm@v1
         with:
           version: v3.4.0
+
+      - name: Add chart repos
         run: |
           apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing helm
           helm repo add bedag https://bedag.github.io/helm-charts

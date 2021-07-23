@@ -41,3 +41,6 @@ prometheusRule:
   percent:
     warning: 0.7
     critical: 0.9
+
+raw:
+  enabled: false

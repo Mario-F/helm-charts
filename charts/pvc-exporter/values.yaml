@@ -31,6 +31,15 @@ pvcScanner:
       cpu: 500m
       memory: 200Mi
 
+dashboard:
+  enabled: true
+  labels:
+    grafana_dashboard: "1"
+  uid: "b064425af1e711eb"
+  title: "Kubernetes / Persistent Volumes (PVC-Exporter)"
+  datasource: "-- Grafana --"
+  timezone: "UTC"
+
 serviceMonitor:
   enabled: false
   additionalLabels: {}

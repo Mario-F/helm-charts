@@ -7,35 +7,48 @@ metadata:
   name: {{ $fullName }}
   labels:
     app: {{ $fullName }}
-    {{- if .Values.prometheusRule.additionalLabels }}
-    {{ toYaml .Values.prometheusRule.additionalLabels | nindent 4 }}
-    {{- end }}
+  {{- if .Values.prometheusRule.additionalLabels }}
+  {{ toYaml .Values.prometheusRule.additionalLabels | nindent 4 }}
+  {{- end }}
 spec:
   groups:
     - name: pvc-usage
       rules:
-        - alert: PvcLowOnSpace
+        {{- range .Values.prometheusRule.thresholds.absolute }}
+        - alert: PersistentVolumeFillingUp
           annotations:
-            message: PVC has low disk space available
+            summary: PersistentVolume is filling up.
+            description: >-
+              The PersistentVolume claimed by {{`{{ $labels.persistentvolumeclaim }}`}} in Namespace
+              {{`{{ $labels.namespace }}`}} is only {{`{{ $value | humanizePercentage }}`}} free.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubepersistentvolumefillingup
           expr: |-
-            (sum without (pod,service,namespace,job,instance,endpoint) (pvc_usage)) 
-              +
-            on(volumename) group_left(storageclass,namespace,node,persistentvolumeclaim) kube_persistentvolumeclaim_info*0 
-              >
-            {{ .Values.prometheusRule.percent.warning }}
-          for: 10m
+            1 - max by(namespace, persistentvolumeclaim) (
+                  pvc_usage
+                    * on (volumename) group_left(namespace, persistentvolumeclaim) kube_persistentvolumeclaim_info
+            )
+            < {{ divf .percentage 100 }}
+          for: {{ .for }}
           labels:
-            severity: warning
-        - alert: PvcOutOffSpace
+        {{- .labels | toYaml | nindent 12 }}
+        {{- end }}
+        {{- range .Values.prometheusRule.thresholds.predictive }}
+        {{ $targetSeconds := (sub (now | mustDateModify .target | unixEpoch) (now | unixEpoch)) }}
+        - alert: PersistentVolumeFillingUp
           annotations:
-            message: PVC has low disk space available
+            summary: PersistentVolume is filling up.
+            description: >-
+              Based on recent sampling, the PersistentVolume claimed by {{`{{ $labels.persistentvolumeclaim }}`}}
+              in Namespace {{`{{ $labels.namespace }}`}} is expected to fill up within {{ $targetSeconds | duration | durationRound }}
+              Currently {{`{{ $value | humanizePercentage }}`}} is available.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubepersistentvolumefillingup
           expr: |-
-            (sum without (pod,service,namespace,job,instance,endpoint) (pvc_usage)) 
-              +
-            on(volumename) group_left(storageclass,namespace,node,persistentvolumeclaim) kube_persistentvolumeclaim_info*0 
-              >
-            {{ .Values.prometheusRule.percent.critical }}
-          for: 10m
+            1 - max by (namespace, persistentvolumeclaim) (
+                  predict_linear(pvc_usage[{{ .interval }}], {{ $targetSeconds }})
+                    * on (volumename) group_left(namespace, persistentvolumeclaim) kube_persistentvolumeclaim_info)
+            < 0
+          for: {{ .interval }}
           labels:
-            severity: critical
+  {{- .labels | toYaml | nindent 12 }}
+  {{- end }}
 {{- end }}

@@ -48,4 +48,60 @@ helm upgrade --install --set serviceMonitor.enabled=true --set prometheusRule.en
 | prometheusRule.additionalLabels | object | `{}` |  |
 | prometheusRule.percent.warning | float | `0.7` |  |
 | prometheusRule.percent.critical | float | `0.9` |  |
+| prometheusRule.thresholds.absolute | list(object) | see [below](#Absolute) | |
+| prometheusRule.thresholds.predictive | list(object) | see [below](#Predictive) | |
 | raw.enabled | bool | `false` |  |
+
+### Thresholds
+
+There are two kinds of alerting thresholds, absolute and predictive. Both types allow effectively unlimited amount of
+instances to be defined, although more than two or three are rarely useful. You can define a set of labels for each
+instance to indicate things like severity.
+
+While the first will trigger an alert on crossing a fixed usage percentage, the latter will attempt to predict the time
+how long (if ever) it will take to fill the volume.
+
+*Caution*: Since duration values are parsed with golang's `time.ParseDuration`, the largest available unit is `h`. Thus,
+to express ex. `1d`, you _must_ use `24h` and so on.
+
+#### Absolute
+
+Those alerts will trigger on usage crossing a flat percentage of the volume's total size for a given timespan.
+
+By default, two alerts are defined:
+
+- less than 30% left for more than one hour, labelled `severity: warning`
+- less than 10% left for at least 15 minutes, labelled `severity: critical`
+
+```yaml
+      - percentage: 30
+        for: 1h
+        labels:
+          severity: warning
+      - percentage: 10
+        for: 15m
+        labels:
+          severity: critical
+```
+
+#### Predictive
+
+Observing values over a given timeframe, a linear prediction is made on the expected usage at a future point in time. If
+the predicted value is at or below zero, indicating that the volume would be filled by then, an alert is raised.
+
+By default the triggers are:
+
+- based on the last six hours, the disk would fill up in less than four days, labelled `severity: warning`
+- based on the last hour, the disk would fill up in less than one day, labelled `severity: critical`
+
+
+```yaml
+      - interval: 6h
+        target: 96h
+        labels:
+          severity: warning
+      - interval: 1h
+        target: 24h
+        labels:
+          severity: critical
+```

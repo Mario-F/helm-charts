@@ -46,10 +46,26 @@ serviceMonitor:
 
 prometheusRule:
   enabled: false
-  additionalLabels: {}
-  percent:
-    warning: 0.7
-    critical: 0.9
+  additionalLabels: { }
+  thresholds:
+    absolute:
+      - percentage: 30
+        for: 1h
+        labels:
+          severity: warning
+      - percentage: 10
+        for: 15m
+        labels:
+          severity: critical
+    predictive:
+      - interval: 6h
+        target: 96h
+        labels:
+          severity: warning
+      - interval: 1h
+        target: 24h
+        labels:
+          severity: critical
 
 raw:
   enabled: false

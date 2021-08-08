@@ -16,6 +16,4 @@ Using the helm chart simply by executing the following commands:
 ```shell
 helm repo add mariof-charts https://mario-f.github.io/helm-charts/
 helm install ingress-proxy mariof-charts/ingress-proxy
-# enable prometheus monitor and rules
-helm upgrade --install ingress-proxy mariof-charts/ingress-proxy
 ```

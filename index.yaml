@@ -1,5 +1,20 @@
 apiVersion: v1
 entries:
+  ingress-proxy:
+  - apiVersion: v2
+    created: "2021-08-08T21:39:40.309198062Z"
+    dependencies:
+    - condition: raw.enabled
+      name: raw
+      repository: https://bedag.github.io/helm-charts
+      version: 1.1.0
+    description: A simple ingress proxy helm chart
+    digest: d7742b355a14ff2b0d9f2ca857805141aea24a59ba601d85a17a29a79a0ddff7
+    name: ingress-proxy
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/ingress-proxy-1.0.0/ingress-proxy-1.0.0.tgz
+    version: 1.0.0
   kubevis:
   - apiVersion: v2
     appVersion: v1.4.0
@@ -276,4 +291,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/pvc-exporter-1.0.0/pvc-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-06T05:01:11.448997652Z"
+generated: "2021-08-08T21:39:40.30931537Z"

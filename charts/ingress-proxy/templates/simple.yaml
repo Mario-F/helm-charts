@@ -1,0 +1,81 @@
+{{- $fullName := include "ingress-proxy.fullname" . -}}
+{{- if .Values.simple.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}-simple
+  labels:
+    {{- include "ingress-proxy.labels" . | nindent 4 }}
+    app.kubernetes.io/component: simple-ingress
+  annotations:
+    {{- if .Values.simple.ingress.class }}
+    kubernetes.io/ingress.class: {{ .Values.simple.ingress.class | quote }}
+    {{- end }}
+    {{- if .Values.simple.ingress.tls.issuer }}
+    cert-manager.io/issuer: {{ .Values.simple.ingress.tls.issuer | quote }}
+    {{- end }}
+    {{- if .Values.simple.ingress.tls.clusterIssuer }}
+    cert-manager.io/cluster-issuer: {{ .Values.simple.ingress.tls.clusterIssuer | quote }}
+    {{- end }}
+    {{- if .Values.simple.ingress.annotations }}
+    {{- include "ingress-proxy.tplvalues.render" (dict "value" .Values.simple.ingress.annotations "context" $) | nindent 4 }}
+    {{- end }}
+spec:
+  {{- if or .Values.simple.ingress.tls.issuer .Values.simple.ingress.tls.clusterIssuer }}
+  tls:
+    {{- range .Values.simple.ingress.hostnames }}
+    - hosts:
+        - {{ . }}
+      secretName: "tls-{{ . | replace "." "-" }}"
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.simple.ingress.hostnames }}
+    - host: {{ . }}
+      http:
+        paths:
+          - backend:
+              service:
+                name: {{ $fullName }}-simple
+                port:
+                  name: http
+            path: "/"
+            pathType: ImplementationSpecific
+    {{- end }}
+{{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $fullName }}-simple
+  labels:
+    {{- include "ingress-proxy.labels" . | nindent 4 }}
+    app.kubernetes.io/component: simple-service
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: {{ .Values.simple.endpoint.port }}
+  clusterIP: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: {{ $fullName }}-simple
+  labels:
+    {{- include "ingress-proxy.labels" . | nindent 4 }}
+    app.kubernetes.io/component: simple-endpoint
+subsets:
+  - addresses:
+      {{- if .Values.simple.endpoint.ip }}
+      - ip: {{ .Values.simple.endpoint.ip }}
+      {{- else }}
+      - hostname: {{ .Values.simple.endpoint.hostname }}
+      {{- end }}
+    ports:
+      - name: http
+        protocol: TCP
+        port: {{ .Values.simple.endpoint.port }}

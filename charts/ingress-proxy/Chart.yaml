@@ -1,0 +1,10 @@
+apiVersion: v2
+name: ingress-proxy
+description: A simple ingress proxy helm chart
+type: application
+version: 1.0.0
+dependencies:
+  - name: raw
+    condition: raw.enabled
+    version: 1.1.0
+    repository: https://bedag.github.io/helm-charts

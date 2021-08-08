@@ -17,5 +17,6 @@ You can then run `helm search repo mariof-charts` to see the charts.
 
 ## Charts
 
+* [Ingress Proxy](charts/ingress-proxy/README.md)
 * [KubeVis](charts/kubevis/README.md)
 * [PVC Exporter](charts/pvc-exporter/README.md)

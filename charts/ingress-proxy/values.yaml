@@ -1,0 +1,20 @@
+#
+# Simple method only needs very basic information to work
+#
+simple:
+  enabled: false
+  endpoint:
+    ip: 93.184.216.34     # Set external servers ip address
+    port: 8080            # Port of the external servers service
+  ingress:
+    hostnames:
+      - example.com
+    class: false          # (OPT) Set ingress class
+    tls: {}               # (OPT) A issuer set will activate tls part of ingress
+      # issuer: false         # Name of the issuer
+      # clusterIssuer: false  # Name of the cluster-issuer
+    annotations: {}       # (OPT) Annotations to additionally (templatable)
+      # nginx.ingress.kubernetes.io/proxy-body-size: "0"
+
+raw:
+  enabled: false

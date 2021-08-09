@@ -15,6 +15,9 @@ simple:
       # clusterIssuer: false  # Name of the cluster-issuer
     annotations: {}       # (OPT) Annotations to additionally (templatable)
       # nginx.ingress.kubernetes.io/proxy-body-size: "0"
+  auth: {}              # This will create a basic-auth in front of your ingress (nginx only)
+    # username: exampleuser
+    # password: examplepass
 
 raw:
   enabled: false

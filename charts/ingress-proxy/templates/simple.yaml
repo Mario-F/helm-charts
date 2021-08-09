@@ -1,5 +1,18 @@
 {{- $fullName := include "ingress-proxy.fullname" . -}}
 {{- if .Values.simple.enabled }}
+{{- if and .Values.simple.auth.username .Values.simple.auth.password }}
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: {{ $fullName }}-simple-auth
+  labels:
+    {{- include "ingress-proxy.labels" . | nindent 4 }}
+    app.kubernetes.io/component: simple-auth
+data:
+  auth: {{ (htpasswd .Values.simple.auth.username .Values.simple.auth.password) | b64enc | quote }}
+{{- end }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -11,6 +24,10 @@ metadata:
   annotations:
     {{- if .Values.simple.ingress.class }}
     kubernetes.io/ingress.class: {{ .Values.simple.ingress.class | quote }}
+    {{- end }}
+    {{- if and .Values.simple.auth.username .Values.simple.auth.password }}
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: {{ $fullName }}-simple-auth
     {{- end }}
     {{- if .Values.simple.ingress.tls.issuer }}
     cert-manager.io/issuer: {{ .Values.simple.ingress.tls.issuer | quote }}

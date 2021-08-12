@@ -17,3 +17,39 @@ Using the helm chart simply by executing the following commands:
 helm repo add mariof-charts https://mario-f.github.io/helm-charts/
 helm install ingress-proxy mariof-charts/ingress-proxy
 ```
+
+## Examples (values.yaml)
+
+Simply forward to a server on the network without tls:
+
+```yaml
+simple:
+  enabled: true
+  endpoint:
+    ip: 10.10.10.10
+    port: 8080
+  ingress:
+    hostnames:
+      - my.example.com
+```
+
+Forward to a server using tls, custom ingress class, annotations and secure with basic-auth:
+
+```yaml
+simple:
+  enabled: true
+  endpoint:
+    ip: 10.10.10.10
+    port: 8080
+  ingress:
+    hostnames:
+      - my.example.com
+    class: "custom-nginx"
+    tls:
+      clusterIssuer: "letsencrypt-stage"
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+  auth:
+    username: dummyuser
+    password: securepassword1234
+```

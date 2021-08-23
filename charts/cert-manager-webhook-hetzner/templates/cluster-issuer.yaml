@@ -17,7 +17,7 @@ spec:
 
     # Name of a secret used to store the ACME account private key
     privateKeySecretRef:
-      name: {{ include "cert-manager-webhook-hetzner.fullname" . }}-default-secret
+      name: {{ include "cert-manager-webhook-hetzner.fullname" . }}-default-hetzner
 
     solvers:
       - dns01:
@@ -32,7 +32,7 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ include "cert-manager-webhook-hetzner.fullname" . }}-default-secret
+  name: {{ include "cert-manager-webhook-hetzner.fullname" . }}-default-hetzner
   labels:
     {{- include "cert-manager-webhook-hetzner.labels" . | nindent 4 }}
     app.kubernetes.io/component: default-cluster-issuer-secret

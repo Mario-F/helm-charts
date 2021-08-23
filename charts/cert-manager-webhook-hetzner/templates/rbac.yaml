@@ -88,6 +88,13 @@ rules:
       - ""
     resources:
       - "secrets"
+    {{- with .Values.secretName }}
+    resourceNames:
+    {{ toYaml . | indent 6 }}
+    {{- end }}
+    {{- if and .Values.hetzner.token .Values.hetzner.email }}
+      - {{ include "cert-manager-webhook-hetzner.fullname" . }}-default
+    {{- end }}
     verbs:
       - "get"
       - "watch"

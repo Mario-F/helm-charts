@@ -88,8 +88,9 @@ rules:
       - ""
     resources:
       - "secrets"
-    {{- with .Values.secretName }}
+    {{- if or (and .Values.hetzner.token .Values.hetzner.email) .Values.secretName }}
     resourceNames:
+    {{- with .Values.secretName }}
     {{ toYaml . | indent 6 }}
     {{- end }}
     {{- if and .Values.hetzner.token .Values.hetzner.email }}

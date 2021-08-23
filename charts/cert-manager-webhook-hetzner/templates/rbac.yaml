@@ -95,6 +95,7 @@ rules:
     {{- end }}
     {{- if and .Values.hetzner.token .Values.hetzner.email }}
       - {{ include "cert-manager-webhook-hetzner.fullname" . }}-default-hetzner
+      - {{ include "cert-manager-webhook-hetzner.fullname" . }}-default-secret
     {{- end }}
     {{- end }}
     verbs:

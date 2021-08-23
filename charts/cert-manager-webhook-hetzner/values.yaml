@@ -20,9 +20,6 @@ service:
   type: ClusterIP
   port: 443
 
-secretName:
-  - hetzner-secret
-
 resources: {}
   # limits:
   #  cpu: 100m

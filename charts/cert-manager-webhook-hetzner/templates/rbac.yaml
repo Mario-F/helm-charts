@@ -88,10 +88,6 @@ rules:
       - ""
     resources:
       - "secrets"
-    {{- with .Values.secretName }}
-    resourceNames:
-    {{ toYaml . | indent 4 }}
-    {{- end }}
     verbs:
       - "get"
       - "watch"

@@ -3,6 +3,21 @@ entries:
   cert-manager-webhook-hetzner:
   - apiVersion: v2
     appVersion: v1.0.0-mr9
+    created: "2021-08-23T19:43:09.633351888Z"
+    dependencies:
+    - condition: raw.enabled
+      name: raw
+      repository: https://bedag.github.io/helm-charts
+      version: 1.1.0
+    description: A chart to deploy cert-manager-webhook-hetzner
+    digest: 274c209fd4e6cf405c3f95a95914997fdd5d0ba9ecf69057a53dd7ddf818251c
+    name: cert-manager-webhook-hetzner
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/cert-manager-webhook-hetzner-1.0.12/cert-manager-webhook-hetzner-1.0.12.tgz
+    version: 1.0.12
+  - apiVersion: v2
+    appVersion: v1.0.0-mr9
     created: "2021-08-23T19:24:43.266739412Z"
     dependencies:
     - condition: raw.enabled
@@ -484,4 +499,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/pvc-exporter-1.0.0/pvc-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-23T19:24:43.266921116Z"
+generated: "2021-08-23T19:43:09.633519099Z"

@@ -96,6 +96,7 @@ rules:
     {{- if and .Values.hetzner.token .Values.hetzner.email }}
       - {{ include "cert-manager-webhook-hetzner.fullname" . }}-default
     {{- end }}
+    {{- end }}
     verbs:
       - "get"
       - "watch"

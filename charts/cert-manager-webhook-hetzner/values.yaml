@@ -1,0 +1,41 @@
+groupName: acme.default.hetzner.webhook
+
+hetzner: # set token and email activate the default cluster isser
+  # token: "my_api_token"
+  # email: my@acme.mail
+  acmeServer: https://acme-v02.api.letsencrypt.org/directory
+
+certManager:
+  namespace: cert-manager
+  serviceAccountName: cert-manager
+
+image:
+  repository: mariof2002/cert-manager-webhook-hetzner
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 443
+
+secretName:
+  - hetzner-secret
+
+resources: {}
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+raw:
+  enabled: false

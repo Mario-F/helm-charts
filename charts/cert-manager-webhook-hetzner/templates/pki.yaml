@@ -1,0 +1,58 @@
+---
+# Create a selfsigned Issuer, in order to create a root CA certificate for
+# signing webhook serving certificates
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ include "cert-manager-webhook-hetzner.selfSignedIssuer" . }}
+  labels:
+    {{- include "cert-manager-webhook-hetzner.labels" . | nindent 4 }}
+    app.kubernetes.io/component: pki-issuer
+spec:
+  selfSigned: {}
+---
+# Generate a CA Certificate used to sign certificates for the webhook
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "cert-manager-webhook-hetzner.rootCACertificate" . }}
+  labels:
+    {{- include "cert-manager-webhook-hetzner.labels" . | nindent 4 }}
+    app.kubernetes.io/component: pki-cacertificate
+spec:
+  secretName: {{ include "cert-manager-webhook-hetzner.rootCACertificate" . }}
+  duration: 43800h # 5y
+  issuerRef:
+    name: {{ include "cert-manager-webhook-hetzner.selfSignedIssuer" . }}
+  commonName: "ca.cert-manager-webhook-hetzner.cert-manager"
+  isCA: true
+---
+# Create an Issuer that uses the above generated CA certificate to issue certs
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ include "cert-manager-webhook-hetzner.rootCAIssuer" . }}
+  labels:
+    {{- include "cert-manager-webhook-hetzner.labels" . | nindent 4 }}
+    app.kubernetes.io/component: pki-caissuer
+spec:
+  ca:
+    secretName: {{ include "cert-manager-webhook-hetzner.rootCACertificate" . }}
+---
+# Finally, generate a serving certificate for the webhook to use
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "cert-manager-webhook-hetzner.servingCertificate" . }}
+  labels:
+    {{- include "cert-manager-webhook-hetzner.labels" . | nindent 4 }}
+    app.kubernetes.io/component: pki-certificate
+spec:
+  secretName: {{ include "cert-manager-webhook-hetzner.servingCertificate" . }}
+  duration: 8760h # 1y
+  issuerRef:
+    name: {{ include "cert-manager-webhook-hetzner.rootCAIssuer" . }}
+  dnsNames:
+    - {{ include "cert-manager-webhook-hetzner.fullname" . }}
+    - {{ include "cert-manager-webhook-hetzner.fullname" . }}.{{ .Release.Namespace }}
+    - {{ include "cert-manager-webhook-hetzner.fullname" . }}.{{ .Release.Namespace }}.svc

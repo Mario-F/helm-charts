@@ -32,7 +32,7 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ include "cert-manager-webhook-hetzner.fullname" . }}-default-hetzner
+  name: {{ include "cert-manager-webhook-hetzner.fullname" . }}-default-secret
   labels:
     {{- include "cert-manager-webhook-hetzner.labels" . | nindent 4 }}
     app.kubernetes.io/component: default-cluster-issuer-secret

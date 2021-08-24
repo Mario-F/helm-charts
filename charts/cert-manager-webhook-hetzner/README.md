@@ -1,4 +1,4 @@
-# CertManagerWebhhokHetzner Helm Chart
+# Cert Manager Webhook Hetzner Helm Chart
 
 The helm chart to deploy this version of cert-manager-webhook-hetzner <https://github.com/Mario-F/cert-manager-webhook-hetzner>
 

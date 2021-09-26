@@ -96,12 +96,12 @@ By default the triggers are:
 
 
 ```yaml
-      - interval: 6h
+      - interval: 9h
         target: 96h
         labels:
           severity: warning
-      - interval: 1h
-        target: 24h
+      - interval: 3h
+        target: 48h
         labels:
           severity: critical
 ```

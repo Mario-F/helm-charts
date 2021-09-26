@@ -326,6 +326,21 @@ entries:
   pvc-exporter:
   - apiVersion: v2
     appVersion: v1.1.0
+    created: "2021-09-26T09:28:08.289547852Z"
+    dependencies:
+    - condition: raw.enabled
+      name: raw
+      repository: https://bedag.github.io/helm-charts
+      version: 1.1.0
+    description: Helm chart to pvc-exporter https://github.com/Mario-F/pvc-exporter
+    digest: 43677f8d73120234e3fd9c02a9b648f05857819828394ec05cbe818c89e26384
+    name: pvc-exporter
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/pvc-exporter-1.3.1/pvc-exporter-1.3.1.tgz
+    version: 1.3.1
+  - apiVersion: v2
+    appVersion: v1.1.0
     created: "2021-08-06T05:01:11.448826949Z"
     dependencies:
     - condition: raw.enabled
@@ -559,4 +574,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/pvc-exporter-1.0.0/pvc-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-24T05:55:10.565069495Z"
+generated: "2021-09-26T09:28:08.289786855Z"

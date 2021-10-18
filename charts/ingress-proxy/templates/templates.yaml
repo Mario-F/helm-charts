@@ -1,0 +1,8 @@
+{{/*
+  Inspired by bedag/raw use templates on parent level with enable/disable feature
+*/}}
+{{- range $.Values.templates }}
+  {{- if .enabled }}
+---{{- (tpl .content $)  | nindent 0 }}
+  {{- end }}
+{{- end }}

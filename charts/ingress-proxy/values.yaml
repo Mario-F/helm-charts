@@ -19,5 +19,16 @@ simple:
     # username: exampleuser
     # password: examplepass
 
-raw:
-  enabled: false
+templates: []
+  # - enabled: true
+  #   content: |
+  #     apiVersion: v1
+  #     kind: ConfigMap
+  #     metadata:
+  #       name: {{ include "parent.fullname" . }}-additional
+  #       labels:
+  #         {{- include "parent.labels" . | nindent 4 }}
+  #     data:
+  #       example.data: |
+  #         nothing special here
+  #         out

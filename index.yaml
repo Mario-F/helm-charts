@@ -3,6 +3,16 @@ entries:
   cert-manager-webhook-hetzner:
   - apiVersion: v2
     appVersion: v1.0.0-mr9
+    created: "2021-10-18T17:47:59.556227001Z"
+    description: A chart to deploy cert-manager-webhook-hetzner
+    digest: b8c6aa60fc5890337d63b475f743b364761fa0b0dce50637767ffbb8b7e28e02
+    name: cert-manager-webhook-hetzner
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/cert-manager-webhook-hetzner-1.2.0/cert-manager-webhook-hetzner-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
+    appVersion: v1.0.0-mr9
     created: "2021-08-24T05:55:10.564859894Z"
     dependencies:
     - condition: raw.enabled
@@ -228,6 +238,15 @@ entries:
     version: 1.0.0
   ingress-proxy:
   - apiVersion: v2
+    created: "2021-10-18T17:47:59.686570822Z"
+    description: A simple ingress proxy helm chart
+    digest: 518a845fba195f59da3e1bbc143c37121b8c686fbdb1a2427d55c96ec36973f1
+    name: ingress-proxy
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/ingress-proxy-1.2.0/ingress-proxy-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
     created: "2021-08-12T15:04:06.026494822Z"
     dependencies:
     - condition: raw.enabled
@@ -334,6 +353,16 @@ entries:
     - https://github.com/Mario-F/helm-charts/releases/download/kubevis-1.0.0/kubevis-1.0.0.tgz
     version: 1.0.0
   pvc-exporter:
+  - apiVersion: v2
+    appVersion: v1.1.0
+    created: "2021-10-18T17:47:59.817889949Z"
+    description: Helm chart to pvc-exporter https://github.com/Mario-F/pvc-exporter
+    digest: d92d155609aa1af643c9f2f2ef35c805110fda5c408a989b8c8e650673cd2c2c
+    name: pvc-exporter
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/pvc-exporter-1.4.0/pvc-exporter-1.4.0.tgz
+    version: 1.4.0
   - apiVersion: v2
     appVersion: v1.1.0
     created: "2021-09-26T09:28:08.289547852Z"
@@ -584,4 +613,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/pvc-exporter-1.0.0/pvc-exporter-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-18T17:38:40.283099736Z"
+generated: "2021-10-18T17:47:59.818384052Z"

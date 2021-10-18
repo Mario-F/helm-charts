@@ -50,7 +50,30 @@ helm upgrade --install --set serviceMonitor.enabled=true --set prometheusRule.en
 | prometheusRule.percent.critical | float | `0.9` |  |
 | prometheusRule.thresholds.absolute | list(object) | see [below](#Absolute) | |
 | prometheusRule.thresholds.predictive | list(object) | see [below](#Predictive) | |
-| raw.enabled | bool | `false` |  |
+| templates[].enabled | bool | `false` | |
+| templates[].content | string | "" | |
+
+## Templates
+
+This chart provides a template render mechanism for rendering additional ressources bound to this release.
+
+It works like bedag/raw helm chart but not on subchart level, see this example (values.yaml):
+
+```yaml
+templates:
+  - enabled: true
+    content: |
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: {{ include "parent.fullname" . }}-additional
+        labels:
+          {{- include "parent.labels" . | nindent 4 }}
+      data:
+        example.data: |
+          nothing special here
+          out
+```
 
 ### Thresholds
 

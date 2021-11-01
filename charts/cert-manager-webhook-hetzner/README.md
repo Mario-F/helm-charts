@@ -2,9 +2,11 @@
 
 The helm chart to deploy this version of cert-manager-webhook-hetzner <https://github.com/Mario-F/cert-manager-webhook-hetzner>
 
-Mainly to utilize the following merge request: <https://github.com/vadimkim/cert-manager-webhook-hetzner/pull/9>
-
 Also featuring config abstraction to only just provide your Hetzener API-Key and yield an default ClusterIssuer.
+
+## Requirements
+
+This chart requires a working installation of [cert-manager](https://cert-manager.io/)
 
 ## Usage
 

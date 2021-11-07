@@ -41,6 +41,7 @@ simple:
   endpoint:
     ip: 10.10.10.10
     port: 8080
+    tls: "true" # Set annotations for secure-backend without validation
   ingress:
     hostnames:
       - my.example.com

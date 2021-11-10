@@ -1,0 +1,6 @@
+apiVersion: v2
+name: whoami
+description: Helm chart to containous/whoami https://hub.docker.com/r/containous/whoami
+type: application
+version: 1.0.0
+appVersion: "v1.5.0"

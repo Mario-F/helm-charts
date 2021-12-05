@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cert-manager-selfservice.fullname" . }}
+  labels:
+    {{- include "cert-manager-selfservice.labels" . | nindent 4 }}
+    app.kubernetes.io/component: selfservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "cert-manager-selfservice.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "cert-manager-selfservice.labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: selfservice
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - server
+            {{- if .Values.selfservice.debug }}
+            - --debug
+            {{- end }}
+            - --port={{ .Values.service.port }}
+            - --cert-prefix={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.cert-prefix "context" $) }}
+            - --issuer-kind={{ .Values.selfservice.kind }}
+            - --issuer-name={{ .Values.selfservice.name }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

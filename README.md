@@ -20,6 +20,7 @@ You can then run `helm search repo mariof-charts` to see the charts.
 ## Charts
 
 * [Cert Manager Webhook Hetzner](charts/cert-manager-webhook-hetzner/README.md)
+* [Cert Manager Selfservice](charts/cert-manager-selfservice/README.md)
 * [Ingress Proxy](charts/ingress-proxy/README.md)
 * [KubeVis](charts/kubevis/README.md)
 * [PVC Exporter](charts/pvc-exporter/README.md)

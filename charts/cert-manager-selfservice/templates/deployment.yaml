@@ -16,6 +16,7 @@ spec:
       labels:
         {{- include "cert-manager-selfservice.labels" . | nindent 8 }}
     spec:
+      serviceAccountName: {{ include "cert-manager-selfservice.fullname" . }}
       containers:
         - name: selfservice
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -27,8 +28,8 @@ spec:
             {{- end }}
             - --port={{ .Values.service.port }}
             - --cert-prefix={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.certPrefix "context" $) }}
-            - --issuer-kind={{ .Values.selfservice.kind }}
-            - --issuer-name={{ .Values.selfservice.name }}
+            - --issuer-kind={{ .Values.selfservice.issuer.kind }}
+            - --issuer-name={{ .Values.selfservice.issuer.name }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

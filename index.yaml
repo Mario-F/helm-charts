@@ -324,6 +324,16 @@ entries:
   kubevis:
   - apiVersion: v2
     appVersion: v1.4.0
+    created: "2021-12-05T07:10:39.528709726Z"
+    description: Helm chart to kubevis https://github.com/Mario-F/kubevis
+    digest: f41830d3bf49af9535746f946497df872d97a221516c2337352e7940e9418357
+    name: kubevis
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/kubevis-2.0.1/kubevis-2.0.1.tgz
+    version: 2.0.1
+  - apiVersion: v2
+    appVersion: v1.4.0
     created: "2021-11-10T11:39:08.678877826Z"
     description: Helm chart to kubevis https://github.com/Mario-F/kubevis
     digest: 11419e8c2ccf41eeae932852cfb3028c10a68020a45974acfe0436e436a66b34
@@ -653,4 +663,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/whoami-1.0.0/whoami-1.0.0.tgz
     version: 1.0.0
-generated: "2021-11-10T11:39:08.679088734Z"
+generated: "2021-12-05T07:10:39.528917629Z"

@@ -3,6 +3,16 @@ entries:
   cert-manager-selfservice:
   - apiVersion: v2
     appVersion: v0.3.1
+    created: "2021-12-05T07:30:13.604324516Z"
+    description: Service to utilize cert-manager outside kubernetes clusters
+    digest: 031b5146847ce4eb7483fcb93c12675591af285a7e5f7e3c620cdf3a9e4553db
+    name: cert-manager-selfservice
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/cert-manager-selfservice-0.1.2/cert-manager-selfservice-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: v0.3.1
     created: "2021-12-05T07:20:01.994971203Z"
     description: Service to utilize cert-manager outside kubernetes clusters
     digest: 4b780b0726de6e7703b50bc781dcf058d51552cb96469a49a8f0ac34b7f36985
@@ -684,4 +694,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/whoami-1.0.0/whoami-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-05T07:20:01.99523801Z"
+generated: "2021-12-05T07:30:13.604723951Z"

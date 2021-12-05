@@ -26,7 +26,7 @@ spec:
             - --debug
             {{- end }}
             - --port={{ .Values.service.port }}
-            - --cert-prefix={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.cert-prefix "context" $) }}
+            - --cert-prefix={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.certPrefix "context" $) }}
             - --issuer-kind={{ .Values.selfservice.kind }}
             - --issuer-name={{ .Values.selfservice.name }}
           ports:

@@ -1,5 +1,5 @@
 selfservice:
-  cert-prefix: "{{ .Release.Name }}"
+  certPrefix: "{{ .Release.Name }}"
   issuer:
     kind: ClusterIssuer
     name: default-issuer

@@ -7,9 +7,9 @@ nameOverride: ""
 ##
 fullnameOverride: ""
 
-## @section Cert-Manager-Selfservice parameters
+## @section Cert-Manager-Selfservice Configuration parameters
 
-## cert-manager-selfservice image version
+## cert-manager-selfservice Configuration
 ## @param selfservice.certPrefix Prefix for certificate ressources
 ## @param selfservice.issuer.kind The cert-manager issuer type to use
 ## @param selfservice.issuer.name The name of cert-manager issuer to use
@@ -21,10 +21,12 @@ selfservice:
     name: default-issuer
   debug: false
 
-## cert-manager-selfservice image version
+## @section Cert-Manager-Selfservice Deployment parameters
+
+## cert-manager-selfservice Image version
 ## ref: https://github.com/Mario-F/cert-manager-selfservice/pkgs/container/cert-manager-selfservice
 ## @param image.repository cert-manager-selfservice image repository
-## @param image.tag cert-manager-selfservice image tag (default to AppVersion)
+## @param image.tag [string] cert-manager-selfservice image tag (default to AppVersion)
 ## @param image.pullPolicy cert-manager-selfservice image pull policy
 ## @param image.pullSecrets Specify docker-registry secret names as an array
 ##
@@ -33,10 +35,46 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+## @param nodeSelector Node labels for pod assignment.
+## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+##
+nodeSelector: {}
+## @param tolerations Tolerations for pod assignment.
+## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+##
+tolerations: []
+
+## cert-manager-selfservice containers' resource requests and limits
+## ref: https://kubernetes.io/docs/user-guide/compute-resources/
+## @param resources.limits The resources limits for the cert-manager-selfservice container
+## @param resources.requests The requested resources for the cert-manager-selfservice container
+##
+resources:
+  ## Example:
+  ## limits:
+  ##    cpu: 200m
+  ##    memory: 256Mi
+  limits: {}
+  ## Examples:
+  ## requests:
+  ##    cpu: 50m
+  ##    memory: 64Mi
+  requests: {}
+
+## @section Traffic exposure parameters
+
+## cert-manager-selfservice service properties
+## @param service.type Service type
+## @param service.port Service HTTP port
+##
 service:
   type: ClusterIP
   port: 5080
 
+## Configure the ingress resource
+## ref: https://kubernetes.io/docs/user-guide/ingress/
+##
+## @skip ingress
 ingress:
   enabled: false
   # class: nginx # by ingress.spec.ingressClassName
@@ -52,18 +90,9 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
+## @section Additional features parameters
 
-nodeSelector: {}
-
-tolerations: []
-
+## @param templates [array] See templates section for explanation
 templates: []
   # - enabled: true
   #   content: |

@@ -7,27 +7,31 @@ nameOverride: ""
 ##
 fullnameOverride: ""
 
-## @section image parameters
+## @section Cert-Manager-Selfservice parameters
 
 ## cert-manager-selfservice image version
-## ref: https://github.com/Mario-F/cert-manager-selfservice/pkgs/container/cert-manager-selfservice
-## @param image.repository cert-manager-selfservice image repository
-## @param image.tag cert-manager-selfservice image tag (immutable tags are recommended)
-## @param image.pullPolicy cert-manager-selfservice image pull policy
-## @param image.pullSecrets Specify docker-registry secret names as an array
-## @param image.debug Set to true if you would like to see extra information on logs
-##
-image:
-  repository: ghcr.io/mario-f/cert-manager-selfservice
-  pullPolicy: IfNotPresent
-  pullSecrets: []
-
+## @param selfservice.certPrefix Prefix for certificate ressources
+## @param selfservice.issuer.kind The cert-manager issuer type to use
+## @param selfservice.issuer.name The name of cert-manager issuer to use
+## @param selfservice.debug Will set debug loglevel in selfservice
 selfservice:
   certPrefix: "{{ .Release.Name }}"
   issuer:
     kind: ClusterIssuer
     name: default-issuer
   debug: false
+
+## cert-manager-selfservice image version
+## ref: https://github.com/Mario-F/cert-manager-selfservice/pkgs/container/cert-manager-selfservice
+## @param image.repository cert-manager-selfservice image repository
+## @param image.tag cert-manager-selfservice image tag (default to AppVersion)
+## @param image.pullPolicy cert-manager-selfservice image pull policy
+## @param image.pullSecrets Specify docker-registry secret names as an array
+##
+image:
+  repository: ghcr.io/mario-f/cert-manager-selfservice
+  pullPolicy: IfNotPresent
+  pullSecrets: []
 
 service:
   type: ClusterIP
@@ -59,8 +63,6 @@ resources: {}
 nodeSelector: {}
 
 tolerations: []
-
-affinity: {}
 
 templates: []
   # - enabled: true

@@ -90,6 +90,18 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+## @section Metrics parameters
+
+## Prometheus Exporter / Metrics
+##
+metrics:
+  ## @param metrics.enabled Setup metrics export
+  ##
+  enabled: false
+  ## @param metrics.port Container Metrics Port scraped by Prometheus Exporter
+  ## Defaults to specified http port
+  port: 6081
+
 ## @section Additional features parameters
 
 ## @param templates [array] See templates section for explanation

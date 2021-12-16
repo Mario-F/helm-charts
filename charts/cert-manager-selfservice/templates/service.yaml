@@ -12,5 +12,11 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    {{- if .Values.metrics.enabled }}
+    - port: {{ .Values.metrics.port }}
+      name: metrics
+      targetPort: metrics
+      protocol: TCP
+    {{- end }}
   selector:
     {{- include "cert-manager-selfservice.selectorLabels" . | nindent 4 }}

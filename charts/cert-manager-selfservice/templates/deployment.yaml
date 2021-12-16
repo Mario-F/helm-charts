@@ -32,6 +32,9 @@ spec:
             {{- if .Values.selfservice.debug }}
             - --debug
             {{- end }}
+            {{- if .Values.metrics.enabled }}
+            - --metrics-port={{ .Values.metrics.port }}
+            {{- end }}
             - --port={{ .Values.service.port }}
             - --cert-prefix={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.certPrefix "context" $) }}
             - --issuer-kind={{ .Values.selfservice.issuer.kind }}
@@ -40,6 +43,11 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+            {{- if .Values.metrics.enabled }}
+            - name: metrics
+              containerPort: {{ .Values.metrics.port }}
+              protocol: TCP
+            {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}

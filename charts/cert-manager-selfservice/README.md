@@ -55,6 +55,17 @@ helm install cert-manager-selfservice \
 | `service.type` | Service type      | `ClusterIP` |
 | `service.port` | Service HTTP port | `5080`      |
 
+### Metrics parameters
+
+| Name                                   | Description                                                                                 | Value   |
+| -------------------------------------- | ------------------------------------------------------------------------------------------- | ------- |
+| `metrics.enabled`                      | Setup metrics export                                                                        | `false` |
+| `metrics.port`                         | Container Metrics Port scraped by Prometheus Exporter                                       | `6081`  |
+| `metrics.serviceMonitor.enabled`       | Creates a Prometheus Operator ServiceMonitor (also requires `metrics.enabled` to be `true`) | `false` |
+| `metrics.serviceMonitor.namespace`     | Namespace in which Prometheus is running                                                    | `""`    |
+| `metrics.serviceMonitor.interval`      | Interval at which metrics should be scraped.                                                | `""`    |
+| `metrics.serviceMonitor.scrapeTimeout` | Timeout after which the scrape is ended                                                     | `""`    |
+
 ### Additional features parameters
 
 | Name        | Description                           | Value |

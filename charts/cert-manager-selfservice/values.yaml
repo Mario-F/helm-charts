@@ -1,16 +1,33 @@
+## @section Common parameters
+
+## @param nameOverride String to partially override common.names.fullname
+##
+nameOverride: ""
+## @param fullnameOverride String to fully override common.names.fullname
+##
+fullnameOverride: ""
+
+## @section image parameters
+
+## cert-manager-selfservice image version
+## ref: https://github.com/Mario-F/cert-manager-selfservice/pkgs/container/cert-manager-selfservice
+## @param image.repository cert-manager-selfservice image repository
+## @param image.tag cert-manager-selfservice image tag (immutable tags are recommended)
+## @param image.pullPolicy cert-manager-selfservice image pull policy
+## @param image.pullSecrets Specify docker-registry secret names as an array
+## @param image.debug Set to true if you would like to see extra information on logs
+##
+image:
+  repository: ghcr.io/mario-f/cert-manager-selfservice
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
 selfservice:
   certPrefix: "{{ .Release.Name }}"
   issuer:
     kind: ClusterIssuer
     name: default-issuer
   debug: false
-
-image:
-  repository: ghcr.io/mario-f/cert-manager-selfservice
-  pullPolicy: IfNotPresent
-
-nameOverride: ""
-fullnameOverride: ""
 
 service:
   type: ClusterIP

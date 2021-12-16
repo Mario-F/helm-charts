@@ -19,6 +19,8 @@ helm install cert-manager-selfservice \
 
 For more configuration see [values.yaml](./values.yaml)
 
+## Parameters
+
 ## Templates
 
 This chart provides a template render mechanism for rendering additional ressources bound to this release.

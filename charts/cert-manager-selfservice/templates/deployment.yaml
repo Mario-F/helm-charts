@@ -21,6 +21,12 @@ spec:
         - name: selfservice
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if (not (empty .Values.image.pullSecrets)) }}
+          imagePullSecrets:
+            {{- range .Values.image.pullSecrets }}
+            - name: {{ . }}
+            {{- end }}
+          {{- end }}
           args:
             - server
             {{- if .Values.selfservice.debug }}

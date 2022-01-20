@@ -26,14 +26,16 @@ helm install cert-manager-selfservice \
 | `nameOverride`     | String to partially override common.names.fullname | `""`  |
 | `fullnameOverride` | String to fully override common.names.fullname     | `""`  |
 
+
 ### Cert-Manager-Selfservice Configuration parameters
 
-| Name                      | Description                            | Value                 |
-| ------------------------- | -------------------------------------- | --------------------- |
-| `selfservice.certPrefix`  | Prefix for certificate ressources      | `{{ .Release.Name }}` |
-| `selfservice.issuer.kind` | The cert-manager issuer type to use    | `ClusterIssuer`       |
-| `selfservice.issuer.name` | The name of cert-manager issuer to use | `default-issuer`      |
-| `selfservice.debug`       | Will set debug loglevel in selfservice | `false`               |
+| Name                      | Description                              | Value                 |
+| ------------------------- | ---------------------------------------- | --------------------- |
+| `selfservice.managerId`   | Uniq owner id for certificate ressources | `{{ .Release.Name }}` |
+| `selfservice.issuer.kind` | The cert-manager issuer type to use      | `ClusterIssuer`       |
+| `selfservice.issuer.name` | The name of cert-manager issuer to use   | `default-issuer`      |
+| `selfservice.debug`       | Will set debug loglevel in selfservice   | `false`               |
+
 
 ### Cert-Manager-Selfservice Deployment parameters
 
@@ -48,12 +50,14 @@ helm install cert-manager-selfservice \
 | `resources.limits`   | The resources limits for the cert-manager-selfservice container    | `{}`                                       |
 | `resources.requests` | The requested resources for the cert-manager-selfservice container | `{}`                                       |
 
+
 ### Traffic exposure parameters
 
 | Name           | Description       | Value       |
 | -------------- | ----------------- | ----------- |
 | `service.type` | Service type      | `ClusterIP` |
 | `service.port` | Service HTTP port | `5080`      |
+
 
 ### Metrics parameters
 
@@ -66,11 +70,13 @@ helm install cert-manager-selfservice \
 | `metrics.serviceMonitor.interval`      | Interval at which metrics should be scraped.                                                | `""`    |
 | `metrics.serviceMonitor.scrapeTimeout` | Timeout after which the scrape is ended                                                     | `""`    |
 
+
 ### Additional features parameters
 
 | Name        | Description                           | Value |
 | ----------- | ------------------------------------- | ----- |
 | `templates` | See templates section for explanation | `[]`  |
+
 
 ## Templates
 

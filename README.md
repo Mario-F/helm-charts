@@ -26,3 +26,7 @@ You can then run `helm search repo mariof-charts` to see the charts.
 * [KubeVis](charts/kubevis/README.md)
 * [PVC Exporter](charts/pvc-exporter/README.md)
 * [Whoami](charts/whoami/README.md)
+
+## Development
+
+Some charts using bitnami [readme-generator-for-helm](https://github.com/bitnami-labs/readme-generator-for-helm), please make sure to update readme this way.

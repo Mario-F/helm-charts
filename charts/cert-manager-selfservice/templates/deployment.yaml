@@ -39,6 +39,7 @@ spec:
             - --manager-id={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.managerId "context" $) }}
             - --issuer-kind={{ .Values.selfservice.issuer.kind }}
             - --issuer-name={{ .Values.selfservice.issuer.name }}
+            - --cleanup-hours={{ .Values.selfservice.cleanup.hours }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

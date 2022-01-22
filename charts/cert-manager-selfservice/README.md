@@ -29,12 +29,13 @@ helm install cert-manager-selfservice \
 
 ### Cert-Manager-Selfservice Configuration parameters
 
-| Name                      | Description                              | Value                 |
-| ------------------------- | ---------------------------------------- | --------------------- |
-| `selfservice.managerId`   | Uniq owner id for certificate ressources | `{{ .Release.Name }}` |
-| `selfservice.issuer.kind` | The cert-manager issuer type to use      | `ClusterIssuer`       |
-| `selfservice.issuer.name` | The name of cert-manager issuer to use   | `default-issuer`      |
-| `selfservice.debug`       | Will set debug loglevel in selfservice   | `false`               |
+| Name                        | Description                                               | Value                 |
+| --------------------------- | --------------------------------------------------------- | --------------------- |
+| `selfservice.managerId`     | Uniq owner id for certificate ressources                  | `{{ .Release.Name }}` |
+| `selfservice.issuer.kind`   | The cert-manager issuer type to use                       | `ClusterIssuer`       |
+| `selfservice.issuer.name`   | The name of cert-manager issuer to use                    | `default-issuer`      |
+| `selfservice.debug`         | Will set debug loglevel in selfservice                    | `false`               |
+| `selfservice.cleanup.hours` | Time in hours after which unused certificates are deleted | `72`                  |
 
 
 ### Cert-Manager-Selfservice Deployment parameters

@@ -14,12 +14,15 @@ fullnameOverride: ""
 ## @param selfservice.issuer.kind The cert-manager issuer type to use
 ## @param selfservice.issuer.name The name of cert-manager issuer to use
 ## @param selfservice.debug Will set debug loglevel in selfservice
+## @param selfservice.cleanup.hours Time in hours after which unused certificates are deleted
 selfservice:
   managerId: "{{ .Release.Name }}"
   issuer:
     kind: ClusterIssuer
     name: default-issuer
   debug: false
+  cleanup:
+    hours: 72
 
 ## @section Cert-Manager-Selfservice Deployment parameters
 

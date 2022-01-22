@@ -36,7 +36,7 @@ spec:
             - --metrics-port={{ .Values.metrics.port }}
             {{- end }}
             - --port={{ .Values.service.port }}
-            - --cert-prefix={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.managerId "context" $) }}
+            - --manager-id={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.managerId "context" $) }}
             - --issuer-kind={{ .Values.selfservice.issuer.kind }}
             - --issuer-name={{ .Values.selfservice.issuer.name }}
           ports:

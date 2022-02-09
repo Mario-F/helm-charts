@@ -2,4 +2,4 @@ apiVersion: v2
 name: ingress-proxy
 description: A simple ingress proxy helm chart
 type: application
-version: 1.3.0
+version: 1.4.0

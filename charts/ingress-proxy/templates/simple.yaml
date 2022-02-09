@@ -22,9 +22,6 @@ metadata:
     {{- include "ingress-proxy.labels" . | nindent 4 }}
     app.kubernetes.io/component: simple-ingress
   annotations:
-    {{- if .Values.simple.ingress.class }}
-    kubernetes.io/ingress.class: {{ .Values.simple.ingress.class | quote }}
-    {{- end }}
     {{- if .Values.simple.endpoint.tls }}
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
@@ -43,6 +40,9 @@ metadata:
     {{- include "ingress-proxy.tplvalues.render" (dict "value" .Values.simple.ingress.annotations "context" $) | nindent 4 }}
     {{- end }}
 spec:
+  {{- if .Values.simple.ingress.class }}
+  ingressClassName: {{ .Values.simple.ingress.class | quote }}
+  {{- end }}
   {{- if or .Values.simple.ingress.tls.issuer .Values.simple.ingress.tls.clusterIssuer }}
   tls:
     {{- range .Values.simple.ingress.hostnames }}

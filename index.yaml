@@ -399,6 +399,15 @@ entries:
     version: 1.0.0
   ingress-proxy:
   - apiVersion: v2
+    created: "2022-02-09T14:15:08.288691282Z"
+    description: A simple ingress proxy helm chart
+    digest: 209b1eae711cd3875b39ce74faae10a82d7a00ab4e0c3593364a73b9ef2e9376
+    name: ingress-proxy
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/ingress-proxy-1.4.0/ingress-proxy-1.4.0.tgz
+    version: 1.4.0
+  - apiVersion: v2
     created: "2021-11-07T10:12:25.836475487Z"
     description: A simple ingress proxy helm chart
     digest: 0f6355758e92fb3d5e4083a6ca45c9956dc7da46ccc44fbfdb54dcf95a5f448b
@@ -794,4 +803,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/whoami-1.0.0/whoami-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-22T10:34:42.299980194Z"
+generated: "2022-02-09T14:15:08.289247204Z"

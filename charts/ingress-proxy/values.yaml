@@ -6,6 +6,7 @@ simple:
   endpoint:
     ip: 93.184.216.34     # Set external servers ip address
     port: 8080            # Port of the external servers service
+    tls: false            # Set to true if endpoint has https enabled
   ingress:
     hostnames:
       - example.com

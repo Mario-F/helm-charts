@@ -154,6 +154,16 @@ entries:
   cert-manager-webhook-hetzner:
   - apiVersion: v2
     appVersion: v1.0.0-mr9
+    created: "2022-03-22T23:19:54.39232499Z"
+    description: A chart to deploy cert-manager-webhook-hetzner
+    digest: 255db8231e90cb8058fa769f2ab987744f8bdf1aa1b703cdf781ccbf03d3537b
+    name: cert-manager-webhook-hetzner
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/cert-manager-webhook-hetzner-1.2.3/cert-manager-webhook-hetzner-1.2.3.tgz
+    version: 1.2.3
+  - apiVersion: v2
+    appVersion: v1.0.0-mr9
     created: "2022-03-22T19:47:03.260191404Z"
     description: A chart to deploy cert-manager-webhook-hetzner
     digest: d6d03e4a6af1e6a4b985d5d417947ac69bc38e4db807c2fc4f373b8b3b437e7a
@@ -813,4 +823,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/whoami-1.0.0/whoami-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-22T19:47:03.261083529Z"
+generated: "2022-03-22T23:19:54.393287401Z"

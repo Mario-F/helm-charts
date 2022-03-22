@@ -1,39 +1,78 @@
+## @section Common parameters
+
+## @param nameOverride String to partially override common.names.fullname
+##
+nameOverride: ""
+## @param fullnameOverride String to fully override common.names.fullname
+##
+fullnameOverride: ""
+
+## @section Cert-Manager-Webhook-Hetzner Configuration parameters
+
+## @param groupName Cert-Manager groupName
 groupName: acme.default.hetzner.webhook
 
+## @param hetzner.token [string] Hetzner DNS api token
+## @param hetzner.email [string] E-Mail presented to lets-encrypt
+## @param hetzner.acmeServer lets-encrypt api to use
 hetzner: # set token and email activate the default cluster isser
   # token: "my_api_token"
   # email: my@acme.mail
   acmeServer: https://acme-v02.api.letsencrypt.org/directory
 
+## @param certManager.namespace Namespace cert-manager is deployed
+## @param certManager.serviceAccountName ServiceAccountname of cert-manager access this webhook
 certManager:
   namespace: cert-manager
   serviceAccountName: cert-manager
 
+## cert-manager-webhook-hetzner Image version
+## ref: https://github.com/Mario-F/cert-manager-webhook-hetzner
+## @param image.repository cert-manager-webhook-hetzner image repository
+## @param image.tag [string] cert-manager-webhook-hetzner image tag (default to AppVersion)
+## @param image.pullPolicy cert-manager-webhook-hetzner image pull policy
 image:
   repository: mariof2002/cert-manager-webhook-hetzner
   pullPolicy: IfNotPresent
 
-nameOverride: ""
-fullnameOverride: ""
-
+## cert-manager-webhook-hetzner service properties
+## @param service.type Service type
+## @param service.port Service HTTP port
 service:
   type: ClusterIP
   port: 443
 
-resources: {}
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
+## cert-manager-webhook-hetzner containers' resource requests and limits
+## ref: https://kubernetes.io/docs/user-guide/compute-resources/
+## @param resources.limits The resources limits for the cert-manager-webhook-hetzner container
+## @param resources.requests The requested resources for the cert-manager-webhook-hetzner container
+resources:
+  ## Example:
+  ## limits:
+  ##    cpu: 100m
+  ##    memory: 128Mi
+  limits: {}
+  ## Examples:
+  ## requests:
+  ##    cpu: 100m
+  ##    memory: 128Mi
+  requests: {}
 
+## @param nodeSelector Node labels for pod assignment.
+## Ref: https://kubernetes.io/docs/user-guide/node-selection/
 nodeSelector: {}
 
+## @param tolerations Tolerations for pod assignment.
+## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 tolerations: []
 
+## @param affinity Affinity for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 affinity: {}
 
+## @section Additional features parameters
+
+## @param templates [array] See templates section for explanation
 templates: []
   # - enabled: true
   #   content: |

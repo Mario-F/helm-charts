@@ -1,0 +1,23 @@
+## @section Common parameters
+
+## @param nameOverride String to partially override common.names.fullname
+nameOverride: ""
+## @param fullnameOverride String to fully override common.names.fullname
+fullnameOverride: ""
+
+## @section Additional features parameters
+
+## @param templates [array] See templates section for explanation
+templates: []
+  # - enabled: true
+  #   content: |
+  #     apiVersion: v1
+  #     kind: ConfigMap
+  #     metadata:
+  #       name: {{ include "parent.fullname" . }}-additional
+  #       labels:
+  #         {{- include "parent.labels" . | nindent 4 }}
+  #     data:
+  #       example.data: |
+  #         nothing special here
+  #         out

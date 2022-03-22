@@ -501,6 +501,17 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/ingress-proxy-1.0.0/ingress-proxy-1.0.0.tgz
     version: 1.0.0
+  iobroker:
+  - apiVersion: v2
+    appVersion: v6.1.0
+    created: "2022-03-22T23:30:11.124514251Z"
+    description: A chart to deploy iobroker docker image
+    digest: 430e4431fee92891fe3cf9ee47f1ace1cd83a3eb18dbb6adb287031c13bb9d33
+    name: iobroker
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/iobroker-0.0.1/iobroker-0.0.1.tgz
+    version: 0.0.1
   kubevis:
   - apiVersion: v2
     appVersion: v1.4.0
@@ -823,4 +834,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/whoami-1.0.0/whoami-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-22T23:19:54.393287401Z"
+generated: "2022-03-22T23:30:11.124807899Z"

@@ -30,3 +30,7 @@ You can then run `helm search repo mariof-charts` to see the charts.
 ## Development
 
 Some charts using bitnami [readme-generator-for-helm](https://github.com/bitnami-labs/readme-generator-for-helm), please make sure to update readme this way.
+
+```shell
+readme-generator -v values.yaml -r README.md
+```

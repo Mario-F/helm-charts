@@ -1,6 +1,0 @@
-apiVersion: v2
-name: iobroker
-description: A chart to deploy iobroker docker image
-type: application
-version: 0.0.1
-appVersion: v6.1.0

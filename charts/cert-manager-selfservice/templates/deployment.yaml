@@ -40,6 +40,9 @@ spec:
             - --issuer-kind={{ .Values.selfservice.issuer.kind }}
             - --issuer-name={{ .Values.selfservice.issuer.name }}
             - --cleanup-hours={{ .Values.selfservice.cleanup.hours }}
+            {{- if not .Values.selfservice.cleanup.enabled }}
+            - --no-cleanup
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

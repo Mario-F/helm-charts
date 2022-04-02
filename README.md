@@ -29,6 +29,14 @@ You can then run `helm search repo mariof-charts` to see the charts.
 
 ## Development
 
+### Versioning
+
+The chart and app versions are distinct from each other, this means chart development will increase the chart version according to [semantic-versioning](https://semver.org/).
+
+Application version update will trigger only a patch release.
+
+### README
+
 Some charts using bitnami [readme-generator-for-helm](https://github.com/bitnami-labs/readme-generator-for-helm), please make sure to update readme this way.
 
 ```shell

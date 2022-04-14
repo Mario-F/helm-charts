@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   cert-manager-selfservice:
   - apiVersion: v2
+    appVersion: v1.1.0
+    created: "2022-04-14T08:01:32.668097973Z"
+    description: Service to utilize cert-manager outside kubernetes clusters
+    digest: 2dca50a112f272cb61117d78a94488f552adc7fd8f2a89c351113344d2f20207
+    name: cert-manager-selfservice
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/cert-manager-selfservice-1.0.3/cert-manager-selfservice-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
     appVersion: v1.1.1
     created: "2022-04-14T07:54:24.797451119Z"
     description: Service to utilize cert-manager outside kubernetes clusters
@@ -584,6 +594,16 @@ entries:
     version: 1.1.0
   pvc-exporter:
   - apiVersion: v2
+    appVersion: v1.1.1
+    created: "2022-04-14T08:01:32.823977584Z"
+    description: Helm chart to pvc-exporter https://github.com/Mario-F/pvc-exporter
+    digest: 424c9c2ab500289345a90bbd78fe68a12b71df3d5baa346fb769a14b324c1e30
+    name: pvc-exporter
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/pvc-exporter-1.4.1/pvc-exporter-1.4.1.tgz
+    version: 1.4.1
+  - apiVersion: v2
     appVersion: v1.1.0
     created: "2021-10-18T17:47:59.817889949Z"
     description: Helm chart to pvc-exporter https://github.com/Mario-F/pvc-exporter
@@ -854,4 +874,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/whoami-1.0.0/whoami-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-14T07:54:24.797983226Z"
+generated: "2022-04-14T08:01:32.824621101Z"

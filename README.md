@@ -4,6 +4,7 @@
 ![Release Charts](https://github.com/mario-f/helm-charts/workflows/Release%20Charts/badge.svg?branch=main)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mario-f/helm-charts.svg)](http://isitmaintained.com/project/mario-f/helm-charts "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/mario-f/helm-charts.svg)](http://isitmaintained.com/project/mario-f/helm-charts "Percentage of issues still open")
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=34NHCDNHRRV6G)
 
 ## Usage
 

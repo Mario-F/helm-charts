@@ -896,6 +896,16 @@ entries:
   whoami:
   - apiVersion: v2
     appVersion: v1.5.0
+    created: "2022-06-23T17:42:54.674344005Z"
+    description: Helm chart to containous/whoami https://hub.docker.com/r/containous/whoami
+    digest: d32c44a5927f626630efb008dc9ad4f7e1b2e11d4abbe88408e62518db0a0170
+    name: whoami
+    type: application
+    urls:
+    - https://github.com/Mario-F/helm-charts/releases/download/whoami-1.0.1/whoami-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: v1.5.0
     created: "2021-11-10T11:34:02.224223359Z"
     description: Helm chart to containous/whoami https://hub.docker.com/r/containous/whoami
     digest: fd8c8bf462af04c26335793438e41cf259691c176eb4bfc3d0bc0f9b77a59782
@@ -904,4 +914,4 @@ entries:
     urls:
     - https://github.com/Mario-F/helm-charts/releases/download/whoami-1.0.0/whoami-1.0.0.tgz
     version: 1.0.0
-generated: "2022-06-16T15:49:13.708951415Z"
+generated: "2022-06-23T17:42:54.683585226Z"

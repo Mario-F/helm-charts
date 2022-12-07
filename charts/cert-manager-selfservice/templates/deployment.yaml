@@ -32,6 +32,10 @@ spec:
             {{- if .Values.selfservice.debug }}
             - --debug
             {{- end }}
+            {{- if .Values.selfservice.auth.enabled }}
+            - --auth-username={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.auth.username "context" $) }}
+            - --auth-password={{ include "cert-manager-selfservice.tplvalues.render" ( dict "value" .Values.selfservice.auth.password "context" $) }}
+            {{- end }}
             {{- if .Values.metrics.enabled }}
             - --metrics-port={{ .Values.metrics.port }}
             {{- end }}

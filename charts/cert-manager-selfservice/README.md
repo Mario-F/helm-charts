@@ -37,6 +37,9 @@ helm install cert-manager-selfservice \
 | `selfservice.debug`           | Will set debug loglevel in selfservice                    | `false`               |
 | `selfservice.cleanup.enabled` | Control if cleanup should enabled                         | `true`                |
 | `selfservice.cleanup.hours`   | Time in hours after which unused certificates are deleted | `72`                  |
+| `selfservice.auth.enabled`    | Enable authentication                                     | `false`               |
+| `selfservice.auth.username`   | Authentication username                                   | `admin`               |
+| `selfservice.auth.password`   | Authentication password                                   | `admin`               |
 
 
 ### Cert-Manager-Selfservice Deployment parameters

@@ -25,6 +25,13 @@ selfservice:
   cleanup:
     enabled: true
     hours: 72
+  auth:
+    ## @param selfservice.auth.enabled Enable authentication
+    enabled: false
+    ## @param selfservice.auth.username Authentication username
+    username: admin
+    ## @param selfservice.auth.password Authentication password
+    password: admin
 
 ## @section Cert-Manager-Selfservice Deployment parameters
 

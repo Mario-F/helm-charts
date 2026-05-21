@@ -3,4 +3,4 @@ name: cert-manager-selfservice
 description: Service to utilize cert-manager outside kubernetes clusters
 type: application
 version: 2.2.0
-appVersion: v2.2.3
+appVersion: v2.2.4
